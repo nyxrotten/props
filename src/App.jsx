@@ -6,14 +6,19 @@ import Task from './components/Task'
 const App = () => {
   
   const [tasks, setTasks] = useState([
-        { id: 1, text: 'Hacer la compra', completed: false },
-        { id: 2, text: 'Llamar al médico', completed: true },
-        { id: 3, text: 'Hacer ejercicio', completed: false }
+        { id: 1, text: 'Shop groceries', completed: false },
+        { id: 2, text: 'Call the doctor', completed: true },
+        { id: 3, text: 'Workout', completed: false }
     ]);
 
-const returnTasks = (tasks) => {
-  return tasks
-}
+const addTask = (taskText) => {
+      const newId = tasks.length + 1;
+      const newTaskName = taskText;
+      const completedTask = false;
+      const newTask = {id: newId, text: newTaskName, completed: completedTask};
+      setTasks({...tasks}, newTask)
+    }
+
 
 const deleteTask = (id) => {
   const taskId = id;

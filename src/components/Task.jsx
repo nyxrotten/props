@@ -1,13 +1,16 @@
+import deleteTask from '../App'
+
 function Task ( {taskList} ) {
+
 
     return (
         <>
         <div className="taskListBox">
             { taskList.map((task) => (
-                <div className="taskBox">
-                    <li>{task.text}</li>
-                    <button>Borrar</button>
+                <div className="taskBox" key={task.id}>
                     <input type="checkbox"></input>
+                    <li>{task.text}</li>
+                    <button>Borrar</button> 
                 </div>
                 ))
             }
@@ -15,5 +18,5 @@ function Task ( {taskList} ) {
         </>
         )
 }
-
+ 
 export default Task 
