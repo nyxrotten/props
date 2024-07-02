@@ -11,30 +11,30 @@ const App = () => {
         { id: 3, text: 'Workout', completed: false }
     ]);
 
-const addTask = (taskText) => {
-      const newId = tasks.length + 1;
-      const newTaskName = taskText;
-      const completedTask = false;
-      const newTask = {id: newId, text: newTaskName, completed: completedTask};
-      setTasks({...tasks}, newTask)
-    }
+const addTask = (newTaskText) => {
+  const newTask = {
+  id: tasks.length + 1,
+  text: newTaskText,
+  completed: false }
+  
+  setTasks({...tasks}, newTask);
+  }
 
 
-const deleteTask = (id) => {
-  const taskId = id;
+const deleteTask = (taskId) => {
   setTasks(tasks.filter(task => task.id !== taskId))
 }
 
-const strikeThrough = (id) => {
-  const taskId = id;
-  const task = tasks.filter(task => task.id === taskId)
+const strikeThrough = () => {
+  tasks.map((task) => (task.completed === false) ? (console.log("no terminado" + task.text)) : (console.log("terminado" + task.text)))
+
 }
 
   return (
     <>
       <h1>Task list</h1>
-      <AddTaskForm />
-      <Task taskList={tasks}/>
+      <AddTaskForm add={addTask} setTasks={setTasks}/>
+      <Task taskList={tasks} delTask={deleteTask} strikeTask={strikeThrough}/>
     </>
   );
 };

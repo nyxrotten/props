@@ -1,22 +1,25 @@
+import {useState} from 'react'
 
-function AddTaskForm() {
+function AddTaskForm( {add} ) {
 
-    const addTask = (taskText) => {
-        const newId = tasks.length + 1;
-        const newTaskName = taskText;
-        const completedTask = false;
-        const newTask = {id: newId, text: newTaskName, completed: completedTask};
-        setTasks({...tasks}, newTask)
-    
-    
+    const [newTaskText, setNewTaskText] = useState("");
+    const handleChange = (e) => {
+        setNewTaskText(e.target.value);
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+            add(newTaskText);
+            
+        }
+        
 
 return (
         <>
-            <div className="inputTaskBox">
-                <input className="taskInput" type="text" placeholder="Add a new task"></input>
-                <button className="addTaskButton" onClick={addTask}>Add task</button>
-            </div>
+            <form className="inputTaskBox" onSubmit={handleSubmit}>
+                <input className="taskInput" type="text" placeholder="Add a new task" onChange={handleChange} ></input>
+                <button type="submit" className="addTaskButton">Add task</button>
+            </form>
 
         </>
     )
@@ -24,8 +27,3 @@ return (
 }
 
 export default AddTaskForm
-
-
-
-
-
